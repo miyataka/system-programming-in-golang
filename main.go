@@ -1,15 +1,15 @@
 package main
 
 import (
-	"encoding/json"
+	"net/http"
 	"os"
 )
 
 func main() {
-	encoder := json.NewEncoder(os.Stdout)
-	encoder.SetIndent("", "    ")
-	encoder.Encode(map[string]string{
-		"example": "encoding/json",
-		"hello":   "worlkd",
-	})
+	request, err := http.NewRequest("GET", "http://ascii.jp", nil)
+	if err != nil {
+		panic(err)
+	}
+	request.Header.Set("X-TEST", "ヘッダーも追加できます")
+	request.Write(os.Stdout)
 }
