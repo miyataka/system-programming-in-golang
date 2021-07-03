@@ -1,11 +1,15 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"os"
-	"time"
 )
 
 func main() {
-	fmt.Fprintf(os.Stdout, "Write with os.Stdout at %v", time.Now())
+	encoder := json.NewEncoder(os.Stdout)
+	encoder.SetIndent("", "    ")
+	encoder.Encode(map[string]string{
+		"example": "encoding/json",
+		"hello":   "worlkd",
+	})
 }
