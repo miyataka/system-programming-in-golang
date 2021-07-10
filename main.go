@@ -19,8 +19,11 @@ func main() {
 	aReader := io.NewSectionReader(programming, 5, 1)
 	sReader := io.NewSectionReader(system, 0, 1)
 	iReader := io.NewSectionReader(programming, 8, 1)
-	iReader2 := io.NewSectionReader(programming, 8, 1)
-	stream = io.MultiReader(aReader, sReader, cReader, iReader, iReader2)
+	pr, pw := io.Pipe()
+	writer := io.MultiWriter(pw, pw)
+	go io.CopyN(writer, iReader, 1)
+	defer pw.Close()
+	stream = io.MultiReader(aReader, sReader, cReader, io.LimitReader(pr, 2))
 
 	io.Copy(os.Stdout, stream)
 }
