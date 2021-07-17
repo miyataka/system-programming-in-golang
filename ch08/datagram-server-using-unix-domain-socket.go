@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	path := filepath.Join(os.TempDir(), "unixdomainsocket-sample")
+	path := filepath.Join(os.TempDir(), "unixdomainsocket-server")
 	os.Remove(path)
 	fmt.Println("Server is running at " + path)
 	conn, err := net.ListenPacket("unixgram", path)
