@@ -5,6 +5,7 @@ go 1.16
 require (
 	github.com/billziss-gh/cgofuse v1.5.0
 	github.com/edsrzf/mmap-go v1.0.0
+	github.com/kr/pty v1.1.8 // indirect
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/mattn/go-isatty v0.0.13 // indirect
 	github.com/shirou/gopsutil v3.21.6+incompatible // indirect
